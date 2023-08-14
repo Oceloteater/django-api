@@ -44,7 +44,7 @@ class PublicRecipeAPITests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
-class PriviateRecipeAPITests(TestCase):
+class PrivateRecipeAPITests(TestCase):
     """Test authenticated api requests"""
 
     def setUp(self):

@@ -131,9 +131,9 @@ class PrivateRecipeAPITests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
         recipe.refresh_from_db()
-        self.assertEqual(res.title, payload['title'])
-        self.assertEqual(res.link, original_link)
-        self.assertEqual(res.user, self.user)
+        self.assertEqual(recipe.title, payload['title'])
+        self.assertEqual(recipe.link, original_link)
+        self.assertEqual(recipe.user, self.user)
 
     def test_full_update(self):
         """Test full update of update"""
@@ -163,7 +163,7 @@ class PrivateRecipeAPITests(TestCase):
     def test_update_user_returns_error(self):
         """Test changing the recipe user results in an error"""
         new_user = create_user(email='user2@example.com', password='test123')
-        recipe = create_recipe(user=new_user)
+        recipe = create_recipe(user=self.user)
 
         payload = {'user': new_user.id}
         url = detail_url(recipe.id)

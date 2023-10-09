@@ -45,13 +45,13 @@ def create_user(**params):
 class PublicRecipeAPITests(TestCase):
     """Test unauthenticated api requests"""
 
-    # def setUp(self):
-    #     self.client = APIClient()
-    #
-    # def test_auth_required(self):
-    #     """Test auth is required to call the api"""
-    #     res = self.client.get(RECIPES_URL)
-    #     self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+    def setUp(self):
+        self.client = APIClient()
+
+    def test_auth_required(self):
+        """Test auth is required to call the api"""
+        res = self.client.get(RECIPES_URL)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
 class PrivateRecipeAPITests(TestCase):
